@@ -61,7 +61,7 @@
 /* LOADING LINES */
 .container-loader {
   --uib-size: 35px;
-  --uib-color: #F97316;
+  --uib-color: #f97316;
   --uib-speed: 1s;
   --uib-stroke: 3.5px;
   display: flex;
@@ -103,4 +103,21 @@
   50% {
     transform: scaleY(1);
   }
+}
+
+/* ESCRITOR */
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+  padding: 1rem 0;
+}
+
+.ProseMirror .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+}
+
+.ProseMirror-focused {
+  outline-offset: 1px;
+  outline: red;
 }

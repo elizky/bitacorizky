@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Catamaran, Cormorant_Infant } from 'next/font/google';
 import './globals.css';
-import { ThemeProvider } from '@/components/providers/theme-provider';
+import { ThemeProvider } from '@/lib/providers/theme-provider';
+import Navbar from '@/components/ui/NavBar';
 
 const catamaran = Catamaran({
   weight: ['300', '400', '600', '700'],
@@ -55,7 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Navbar />
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

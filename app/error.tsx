@@ -9,7 +9,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
 
   return (
     <div>
-      <p>Oh no, something went wrong... maybe refresh?</p>
+      <p>Algo salió mal, prueba refrescando la pagina</p>
     </div>
   );
 }
