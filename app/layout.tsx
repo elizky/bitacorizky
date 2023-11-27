@@ -3,6 +3,9 @@ import { Catamaran, Cormorant_Infant } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/lib/providers/theme-provider';
 import Navbar from '@/components/ui/NavBar';
+import AuthProvider from '@/lib/context/AuthContext';
+import { getServerSession } from 'next-auth';
+import { Toaster } from '@/components/ui/toaster';
 
 const catamaran = Catamaran({
   weight: ['300', '400', '600', '700'],
@@ -46,7 +49,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const session = await getServerSession();
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${catamaran.variable} ${cormorant.variable} font-catamaran`}>
@@ -56,8 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main>{children}</main>
+          <AuthProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Toaster />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

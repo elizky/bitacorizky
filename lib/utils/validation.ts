@@ -1,29 +1,5 @@
 import { Content, ErrorLoginText, ErrorWriteText, ErrorsProps } from './interfaces';
 
-// export const validateLogin = (
-//   email: string,
-//   password: string,
-//   errorText: ErrorLoginText
-// ): ErrorsProps => {
-//   let errors: { email?: string; password?: string } = {};
-
-//   // Validación del email
-//   if (validator.isEmpty(email)) {
-//     errors.email = errorText.emailEmpty;
-//   } else if (!validator.isEmail(email)) {
-//     errors.email = errorText.emailFormat;
-//   }
-
-//   // Validación de la contraseña
-//   if (validator.isEmpty(password)) {
-//     errors.password = errorText.passwordError;
-//   } else if (password.length < 6) {
-//     errors.password = errorText.passwordValidate;
-//   }
-
-//   return errors;
-// };
-
 export const validateContent = (content: Content, errorText: ErrorWriteText): ErrorsProps => {
   let errors: { [key: string]: string } = {};
 

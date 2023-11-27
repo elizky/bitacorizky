@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
@@ -47,14 +53,32 @@
     --input: 12 6.5% 15.1%;
     --ring: 20.5 90.2% 48.2%;
   }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+  h1 {
+    scroll-margin: 5rem;
+    font-size: 2.25rem /* 36px */;
+    line-height: 2.5rem /* 40px */;
+    font-weight: 800;
+    letter-spacing: -0.025em;
   }
-  body {
-    @apply bg-background text-foreground;
+  h3 {
+    scroll-margin: 5rem /* 80px */;
+    font-size: 1.5rem /* 24px */;
+    line-height: 2rem /* 32px */;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  h4 {
+    scroll-margin: 5rem /* 80px */;
+    font-size: 1.25rem /* 20px */;
+    line-height: 1.75rem /* 28px */;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 3rem /* 48px */;
+      line-height: 1;
+    }
   }
 }
 

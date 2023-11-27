@@ -1,6 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
+import { useAuth } from '@/lib/context/AuthContext';
 
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,8 +18,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Chrome, Loader } from 'lucide-react';
-import { useAuth } from '@/lib/context/AuthContext';
+import { Chrome } from 'lucide-react';
 import { useToast } from './use-toast';
 
 const formSchema = z.object({
@@ -34,7 +35,6 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const { currentUser, login, loginWithGoogle } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -46,19 +46,35 @@ const LoginForm = () => {
       password: '',
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
+
+  const onClickProviderButton = () => {
+    loginWithGoogle()
+      .then(() => router.push('/'))
+      .catch((error) => {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Algo salió mal.',
+          description: error.message,
+        });
+      });
+  };
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     login(values.email, values.password)
       .then(() => router.push('/'))
       .catch((error) => {
-        console.log('error', error);
         toast({
-          variant: "destructive",
+          variant: 'destructive',
           title: 'Uh oh! Algo salió mal.',
-          description: 'asd',
+          description: error.message,
         });
       });
     console.log(values);
-  }
+  };
+
+  useEffect(() => {
+    currentUser && router.push('/');
+  });
   return (
     <div className='grid gap-6'>
       <Form {...form}>
@@ -100,12 +116,8 @@ const LoginForm = () => {
           <span className='bg-background px-2 text-muted-foreground'>O Continua Con</span>
         </div>
       </div>
-      <Button variant='outline' type='button' disabled={isLoading} onClick={loginWithGoogle}>
-        {isLoading ? (
-          <Loader className='mr-2 h-4 w-4 animate-spin' />
-        ) : (
-          <Chrome className='mr-2 h-4 w-4' />
-        )}
+      <Button variant='outline' type='button' onClick={onClickProviderButton}>
+        <Chrome className='mr-2 h-4 w-4' />
         Google
       </Button>
     </div>

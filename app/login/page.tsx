@@ -7,7 +7,7 @@ export default async function Home() {
         <div className='lg:p-8'>
           <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
             <div className='flex flex-col space-y-2 text-center'>
-              <h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
+              <h1>
                 Bienvenido a Bitacora
               </h1>
               <p className='text-lg font-semibold'>Inicia sesion para poder acceder</p>
