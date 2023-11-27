@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
   getAuth,
@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
   updateProfile,
@@ -23,6 +24,7 @@ const AuthContext = createContext<AuthContextType>({
   login: async (email: string, password: string) => {},
   logout: async () => {},
   loginWithGoogle: async () => {},
+  loginWithFacebook: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -61,6 +63,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     await signInWithPopup(auth, provider);
   };
 
+  const loginWithFacebook = async () => {
+    const provider = new FacebookAuthProvider();
+    await signInWithPopup(auth, provider);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       user ? setCurrentUser(user) : setCurrentUser(null);
@@ -75,6 +82,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     login,
     logout,
     loginWithGoogle,
+    loginWithFacebook,
   };
 
   return (

@@ -26,6 +26,7 @@ const Home = () => {
   const router = useRouter();
 
   const fetchWrites = async () => {
+    setLoading(true);
     const writesData = await getWrites(currentUser.uid);
     setWrites(writesData);
     setLoading(false);

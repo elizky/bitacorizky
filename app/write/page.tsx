@@ -13,7 +13,6 @@ import { useToast } from '@/components/ui/use-toast';
 import Tiptap from '@/components/ui/Tiptap';
 import { Camera, Loader2, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Loading from '../loading';
 
 const Writing = () => {
   const [content, setContent] = useState<Content>({ type: 'doc', content: [] });
@@ -81,6 +80,7 @@ const Writing = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoadingData(true);
     getLocation();
     const errors = validateContent(content, errorText);
     const currentDate = new Date();
@@ -109,7 +109,8 @@ const Writing = () => {
             title: 'Hubo error en la conexion',
             description: error,
           });
-        });
+        })
+        .finally(() => setIsLoadingData(false));
     } else {
       const errorMessages = Object.values(errors).join(' ');
       toast({
