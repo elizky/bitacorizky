@@ -1,3 +1,4 @@
+'use client'
 import { Content, TextElement } from '../utils/interfaces';
 import { useState, useEffect } from 'react';
 

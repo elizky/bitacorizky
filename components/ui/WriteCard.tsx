@@ -1,7 +1,7 @@
 import React from 'react';
 import parser from 'html-react-parser';
 import useContent from '@/lib/hooks/useContent';
-import { Card, CardDescription, CardHeader, CardTitle } from './card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './card';
 import formatDate from '@/lib/utils/formatDate';
 import { Camera, CameraOff, LocateFixed } from 'lucide-react';
 import { WriteProps } from '@/lib/utils/interfaces';
@@ -16,31 +16,21 @@ const WriteCard = ({ data }: WriteCardProps) => {
   const { title } = useContent(content);
 
   return (
-    <Link href={`/writes/${encodeURIComponent(id)}`}>
-      <Card
-        key={id}
-        className='
-            w-72 h-28
-            space-y-4 
-            cursor-pointer 
-            rounded-sm 
-            outline-none 
-            dark:outline-paper 
-            dark:hover:bg-paper 
-            hover:bg-secondary 
-            transition-all 
-        '
-      >
-        <CardHeader>
-          <CardTitle>{parser(title)}</CardTitle>
-          <CardDescription className='flex items-center justify-between'>
-            <p className='font-cormorant italic'>{formatDate(publishAt)}</p>
-            {location && <LocateFixed />}
-            {image ? <Camera /> : <CameraOff />}
-          </CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
+    <Card key={id} className='w-72'>
+      <CardHeader>
+        <CardTitle>{parser(title)}</CardTitle>
+        <CardDescription className='flex items-center justify-between mt-4 font-cormorant italic'>
+          {formatDate(publishAt)}
+          {location && <LocateFixed />}
+          {image ? <Camera /> : <CameraOff />}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Link href={`/writes/${encodeURIComponent(id)}`} className='hover:underline text-primary'>
+          Leer
+        </Link>
+      </CardContent>
+    </Card>
   );
 };
 

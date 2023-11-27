@@ -61,9 +61,9 @@ const Writing = () => {
   const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
     if (file) {
+      setIsLoadingImage(true);
       uploadImage(file, currentUser.uid)
         .then((data) => {
-          setIsLoadingImage(true);
           setImage(data);
           toast({
             title: '¡La imagen se cargó correctamente!',
@@ -132,7 +132,13 @@ const Writing = () => {
         </div>
         <label className='w-1/12 h-fit pr-8 flex flex-col items-center pt-8 text:black dark:text-white cursor-pointer hover:text-primary dark:hover:text-primary transition'>
           <Camera className={isLoadingImage ? ' text-gray-500 ' : ''} />
-          <input type='file' onChange={handleImageUpload} className='hidden' title='hola' />
+          <input
+            type='file'
+            onChange={handleImageUpload}
+            className='hidden'
+            title='hola'
+            accept='image/*'
+          />
         </label>
       </div>
       <div className='flex items-center justify-center'>

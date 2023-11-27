@@ -4,7 +4,6 @@ import './globals.css';
 import { ThemeProvider } from '@/lib/providers/theme-provider';
 import Navbar from '@/components/ui/NavBar';
 import AuthProvider from '@/lib/context/AuthContext';
-import { getServerSession } from 'next-auth';
 import { Toaster } from '@/components/ui/toaster';
 
 const catamaran = Catamaran({
@@ -50,7 +49,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession();
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${catamaran.variable} ${cormorant.variable} font-catamaran`}>

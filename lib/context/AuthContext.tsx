@@ -8,7 +8,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
-  UserCredential,
   updateProfile,
 } from 'firebase/auth';
 import { app } from '../firebase/firebaseConfig';
@@ -81,7 +80,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthContext.Provider value={value}>
       {loading ? (
-        <div className='h-screen flex justify-center items-center '>
+        <div className='h-96 flex justify-center items-center '>
           <Loader />
         </div>
       ) : (
