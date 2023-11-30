@@ -1,12 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Button } from './button';
 
 const InfoModal = ({ isOpen, onClose }: any) => {
   return (
@@ -27,7 +22,10 @@ const InfoModal = ({ isOpen, onClose }: any) => {
           </p>
           <p>
             En la página de{' '}
-            <Link href={'/'} className='font-bold underline underline-offset-2 decoration-primary'>
+            <Link
+              href={'/'}
+              className='font-bold text-primary hover:text-primary/90 underline underline-offset-2 decoration-primary'
+            >
               Inicio
             </Link>
             , podrás ver todas las entradas que has registrado en tu Bitácora personal. Aquí podrás
@@ -41,7 +39,7 @@ const InfoModal = ({ isOpen, onClose }: any) => {
             En la página de{' '}
             <Link
               href={'/write'}
-              className='font-bold underline underline-offset-2 decoration-primary'
+              className='font-bold text-primary hover:text-primary/90 underline underline-offset-2 decoration-primary'
             >
               Escribir
             </Link>
@@ -63,28 +61,10 @@ const InfoModal = ({ isOpen, onClose }: any) => {
             continuación y serás redirigido a un formulario donde podrás compartir tus opiniones con
             nosotros.
           </p>
-          <Link
-            href={'/feedback'}
-            className='flex 
-            justify-center 
-            my-2
-            px-6
-            py-4
-            rounded-3xl 
-            font-semibold uppercase
-            text-white text-center
-            bg-primary 
-            shadow 
-            hover:bg-primary-light
-            transition
-            focus-visible:outline 
-            focus-visible:outline-2 
-            focus-visible:outline-offset-2 
-            focus-visible:outline-primary'
-          >
-            {' '}
-            Enviar Feedback
-          </Link>
+          <Button className='m-auto'>
+            <Link href={'/feedback'}> Enviar Feedback</Link>
+          </Button>
+
           <p>
             ¡Estamos emocionados por compartir más características emocionantes en futuras
             actualizaciones! Apreciamos tu apoyo y tu contribución para hacer de Bitácora la mejor

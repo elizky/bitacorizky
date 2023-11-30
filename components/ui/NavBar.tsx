@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/context/AuthContext';
@@ -23,10 +23,10 @@ import {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 import { Button } from './button';
+import { Badge } from './badge';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hasShownModal, setHasShownModal] = useState(false);
 
   const { theme, setTheme } = useTheme();
   const { currentUser, logout } = useAuth();
@@ -41,17 +41,6 @@ const Header = () => {
     logout();
     router.push('/login');
   };
-
-  useEffect(() => {
-    const hasShownModal = localStorage.getItem('hasShownModal-1.0.0');
-    if (!hasShownModal) {
-      setIsModalOpen(true);
-      setHasShownModal(false);
-      localStorage.setItem('hasShownModal-1.0.0', 'true');
-    } else {
-      setHasShownModal(true);
-    }
-  }, []);
 
   return (
     <header className='py-6 px-8 flex items-center justify-between font-catamaran'>
@@ -72,25 +61,28 @@ const Header = () => {
             </Button>
           ))}
       </div>
-      <div className='flex justify-between w-1/2'>
-        {currentUser && (
-          <button
-            onClick={toggleModal}
-            className='
-        rounded-lg 
-        focus-visible:outline 
-        focus-visible:outline-2 
-        focus-visible:outline-offset-4 
-        focus-visible:outline-primary
-        '
-          >
-            <HelpCircle
-              className={`hover:text-primary-light transition-colors ${
-                isModalOpen && 'text-primary'
-              }`}
-            />
-          </button>
-        )}
+      <div className='flex justify-between w-2/3'>
+        <div className='flex justify-center items-center w-1/2 gap-4'>
+          {currentUser && (
+            <button
+              onClick={toggleModal}
+              className='
+          rounded-lg 
+          focus-visible:outline 
+          focus-visible:outline-2 
+          focus-visible:outline-offset-4 
+          focus-visible:outline-primary
+          '
+            >
+              <HelpCircle
+                className={`hover:text-primary-light transition-colors ${
+                  isModalOpen && 'text-primary'
+                }`}
+              />
+            </button>
+          )}
+          <Badge variant='secondary'>v 0.1.0</Badge>
+        </div>
         {currentUser && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

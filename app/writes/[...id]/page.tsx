@@ -6,16 +6,14 @@ import parser from 'html-react-parser';
 import useContent from '@/lib/hooks/useContent';
 import Image from 'next/image';
 
-import ImageModal from '@/components/ui/ImageModal';
 import { useAuth } from '@/lib/context/AuthContext';
 import { WriteProps } from '@/lib/utils/interfaces';
 import formatDate from '@/lib/utils/formatDate';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/components/ui/use-toast';
 import { getLocationWrite } from '@/lib/services';
-import { set } from 'zod';
 import Loader from '@/components/ui/Loader';
-import { Loader2 } from 'lucide-react';
+import { ImageZoom } from '@/components/ui/ImageZoom';
 
 interface WritePageProps {
   params: {
@@ -25,8 +23,7 @@ interface WritePageProps {
 const Write = ({ params }: WritePageProps) => {
   const [write, setWrite] = useState<WriteProps>();
   const [location, setLocation] = useState('');
-  const [isImageLoading, setIsImageLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { currentUser } = useAuth();
@@ -35,6 +32,7 @@ const Write = ({ params }: WritePageProps) => {
 
   const fetchWrite = () => {
     setLoading(true);
+    setIsImageLoading(true);
     getWrite(params.id[0])
       .then((data) => {
         setWrite(data);
@@ -49,19 +47,8 @@ const Write = ({ params }: WritePageProps) => {
       })
       .finally(() => {
         setLoading(false);
+        setIsImageLoading(false);
       });
-  };
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  const handleImageLoad = () => {
-    setIsImageLoading(false);
   };
 
   useEffect(() => {
@@ -89,33 +76,22 @@ const Write = ({ params }: WritePageProps) => {
               <p key={index}>{parser(paragraph)}</p>
             ))}
             {write && write.image !== '' && (
-              <div
-                className={`w-auto m-auto items-center flex justify-center cursor-pointer ${
-                  !showModal && 'hover:opacity-80'
-                } transition-all`}
-              >
-                {showModal && (
-                  <ImageModal isOpen={showModal} onClose={() => setShowModal(false)}>
-                    <Image
-                      src={write.image}
-                      alt={`imagen de ${parser(title)}`}
-                      height={400}
-                      width={400}
-                      onClick={closeModal}
-                    />
-                  </ImageModal>
-                )}
-                <div className='relative'>
-                  {write && isImageLoading && <Skeleton className='w-[200] h-[200] rounded-full' />}
-                  <Image
+              <div className={` m-auto items-center flex justify-center cursor-zoom-in `}>
+                {write && isImageLoading ? (
+                  <Skeleton className='w-[200px] h-[200px]' />
+                ) : (
+                  <ImageZoom
                     src={write.image}
                     alt={`imagen de ${parser(title)}`}
-                    height={200}
-                    width={200}
-                    onLoad={handleImageLoad}
-                    onClick={openModal}
+                    options={{
+                      margin: 10,
+                      background: '#000000e3',
+                      scrollOffset: 20
+                    }}
+                    width={300}
+                    height={300}
                   />
-                </div>
+                )}
               </div>
             )}
           </div>
