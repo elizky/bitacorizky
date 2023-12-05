@@ -135,11 +135,23 @@
   padding: 1rem 0;
 }
 
-.ProseMirror h1.is-empty::before {
+.light .ProseMirror h1.is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: #00000036;
+}
+.dark .ProseMirror h1.is-empty::before {
   content: attr(data-placeholder);
   float: left;
   height: 0;
   color: #ffffff26;
+}
+.light .ProseMirror p.is-empty:nth-child(2)::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: #00000036;
 }
 .ProseMirror p.is-empty:nth-child(2)::before {
   content: attr(data-placeholder);

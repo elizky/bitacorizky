@@ -44,7 +44,7 @@ const Header = () => {
 
   return (
     <header className='py-6 px-8 flex items-center justify-between font-catamaran'>
-      <div className='flex justify-start w-1/2'>
+      <div className='flex justify-start'>
         {currentUser &&
           (pathname === '/' ? (
             currentUser && (
@@ -61,9 +61,9 @@ const Header = () => {
             </Button>
           ))}
       </div>
-      <div className='flex justify-between w-2/3'>
-        <div className='flex justify-center items-center w-1/2 gap-4'>
-          {currentUser && (
+
+      <div className='flex  gap-4'>
+        {/* {currentUser && (
             <button
               onClick={toggleModal}
               className='
@@ -80,9 +80,10 @@ const Header = () => {
                 }`}
               />
             </button>
-          )}
-          <Badge variant='secondary'>v 0.1.0</Badge>
-        </div>
+          )} */}
+        <Badge variant='secondary'>v 0.1.0</Badge>
+      </div>
+      <div>
         {currentUser && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
