@@ -44,7 +44,7 @@ const Header = () => {
 
   return (
     <header className='py-6 px-8 flex items-center justify-between font-catamaran'>
-      <div className='flex justify-start'>
+      <div className='flex justify-start w-1/3 '>
         {currentUser &&
           (pathname === '/' ? (
             currentUser && (
@@ -62,7 +62,7 @@ const Header = () => {
           ))}
       </div>
 
-      <div className='flex  gap-4'>
+      <div className='flex gap-4 w-1/3  justify-center'>
         {/* {currentUser && (
             <button
               onClick={toggleModal}
@@ -83,7 +83,7 @@ const Header = () => {
           )} */}
         <Badge variant='secondary'>v 0.1.0</Badge>
       </div>
-      <div>
+      <div className='flex justify-end w-1/3'>
         {currentUser && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
