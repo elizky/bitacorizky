@@ -5,27 +5,19 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/context/AuthContext';
 import Greeting from '@/lib/utils/Greeting';
 
-import InfoModal from '../ui/InfoModal';
-import {
-  HelpCircle,
-  Home,
-  LogOut,
-  MessagesSquare,
-  MoonIcon,
-  Settings,
-  SunIcon,
-} from 'lucide-react';
+import InfoModal from './InfoModal';
+import { Home, LogOut, MessagesSquare, MoonIcon, Settings, SunIcon } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './dropdown-menu';
-import { Button } from './button';
-import { Badge } from './badge';
+} from './ui/dropdown-menu';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
 
-const Header = () => {
+const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { theme, setTheme } = useTheme();
@@ -45,8 +37,8 @@ const Header = () => {
   return (
     <header className='py-6 px-8 flex items-center justify-between font-catamaran'>
       <div className='flex justify-start w-1/3 '>
-        {currentUser &&
-          (pathname === '/' ? (
+        {currentUser ? (
+          pathname === '/' ? (
             currentUser && (
               <Greeting
                 morning='Buenos días'
@@ -59,28 +51,13 @@ const Header = () => {
             <Button onClick={() => router.push('/')} variant='ghost' size='icon'>
               <Home />
             </Button>
-          ))}
+          )
+        ) : (
+          <h3>Bitacorizky</h3>
+        )}
       </div>
 
       <div className='flex gap-4 w-1/3  justify-center'>
-        {/* {currentUser && (
-            <button
-              onClick={toggleModal}
-              className='
-          rounded-lg 
-          focus-visible:outline 
-          focus-visible:outline-2 
-          focus-visible:outline-offset-4 
-          focus-visible:outline-primary
-          '
-            >
-              <HelpCircle
-                className={`hover:text-primary-light transition-colors ${
-                  isModalOpen && 'text-primary'
-                }`}
-              />
-            </button>
-          )} */}
         <Badge variant='secondary'>v 0.1.0</Badge>
       </div>
       <div className='flex justify-end w-1/3'>
@@ -134,4 +111,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Catamaran, Cormorant_Infant } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/lib/providers/theme-provider';
-import Navbar from '@/components/ui/NavBar';
+import Navbar from '@/components/NavBar';
 import AuthProvider from '@/lib/context/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
 

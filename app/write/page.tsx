@@ -10,7 +10,7 @@ import { validateContent } from '@/lib/utils/validation';
 import { Content, ErrorWriteText } from '@/lib/utils/interfaces';
 import { useToast } from '@/components/ui/use-toast';
 
-import Tiptap from '@/components/ui/Tiptap';
+import Tiptap from '@/components/Tiptap';
 import { Camera, Loader2, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 

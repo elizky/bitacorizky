@@ -13,7 +13,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/components/ui/use-toast';
 import { getLocationWrite } from '@/lib/services';
 import Loader from '@/components/ui/Loader';
-import { ImageZoom } from '@/components/ui/ImageZoom';
+import { ImageZoom } from '@/components/ImageZoom';
 
 interface WritePageProps {
   params: {

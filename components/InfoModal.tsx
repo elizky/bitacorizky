@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Button } from './button';
+import { Button } from './ui/button';
 
 const InfoModal = ({ isOpen, onClose }: any) => {
   return (

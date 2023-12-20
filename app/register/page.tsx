@@ -1,9 +1,9 @@
 import Footer from '@/components/Footer';
-import LoginForm from '@/components/LoginForm';
+import RegisterForm from '@/components/RegisterForm';
 import TypeWriter from '@/components/TypeWriter';
 import Link from 'next/link';
 
-export default async function Home() {
+export default async function Register() {
   return (
     <>
       <div
@@ -17,17 +17,17 @@ export default async function Home() {
         <div className='w-1/3'>
           <div className=' flex w-full flex-col justify-center items-center space-y-6 '>
             <div className='flex flex-col space-y-2 text-center'>
-              <h1 className='text-lg font-semibold'>Inicia sesion para poder acceder</h1>
+              <h1 className='text-lg font-semibold'>Crea una cuenta para poder acceder</h1>
             </div>
-            <LoginForm />
+            <RegisterForm />
             <p>
               O puedes{' '}
               <Link
-                href='/register'
+                href='/login'
                 className='underline underline-offset-2 hover:text-primary transition'
               >
                 {' '}
-                crearte una cuenta
+                loguearte con tu cuenta
               </Link>
             </p>
           </div>
