@@ -25,10 +25,6 @@ const NavBar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
   const handleLogout = () => {
     logout();
     router.push('/login');
@@ -57,7 +53,7 @@ const NavBar = () => {
         )}
       </div>
 
-      <div className='flex gap-4 w-1/3  justify-center'>
+      <div className='hidden sm:flex gap-4 w-1/3  justify-center'>
         <Badge variant='secondary'>v 0.1.0</Badge>
       </div>
       <div className='flex justify-end w-1/3'>

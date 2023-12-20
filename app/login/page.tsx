@@ -10,15 +10,13 @@ export default async function Home() {
         className='min-h-screen flex items-center '
         style={{ minHeight: 'calc(100vh - 70px)', marginTop: '-70px' }}
       >
-        <div className='w-2/3 p-8'>
+        <div className='sm:w-1/2 lg:w-2/3 p-8 hidden md:flex'>
           <TypeWriter />
         </div>
 
-        <div className='w-1/3'>
+        <div className='w-full md:w-1/2 lg:w-1/3 p-8'>
           <div className=' flex w-full flex-col justify-center items-center space-y-6 '>
-            <div className='flex flex-col space-y-2 text-center'>
-              <h1 className='text-lg font-semibold'>Inicia sesion para poder acceder</h1>
-            </div>
+            <h1 className='text-lg font-semibold text-center'>Inicia sesion para poder acceder</h1>
             <LoginForm />
             <p>
               O puedes{' '}

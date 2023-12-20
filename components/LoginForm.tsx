@@ -71,8 +71,8 @@ const LoginForm = () => {
   });
 
   return (
-    <>
-      <div className='grid gap-2 w-[350px]'>
+    <div className='grid gap-6 w-full max-w-[500px]'>
+      <div className='grid gap-4 '>
         <Button
           className='hover:bg-primary'
           variant='outline'
@@ -96,7 +96,7 @@ const LoginForm = () => {
         <span className='bg-background px-2 text-muted-foreground'>Or continue with</span>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-6 w-[350px]'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-6'>
           <div className='grid gap-4'>
             <FormField
               control={form.control}
@@ -145,7 +145,7 @@ const LoginForm = () => {
           </div>
         </form>
       </Form>
-    </>
+    </div>
   );
 };
 

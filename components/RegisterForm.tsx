@@ -53,7 +53,7 @@ const RegisterForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-6 w-[350px]'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-6 w-full max-w-[500px]]'>
         <div className='grid gap-4'>
           <FormField
             control={form.control}
