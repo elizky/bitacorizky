@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'public/izky.png',
+        url: 'opengraph-image.png',
         width: 800,
         height: 600,
-        alt: 'Imagen de izky',
+        alt: 'opengraph-image.alt.txt',
       },
     ],
   },
