@@ -12,7 +12,7 @@ const ImageToExport: React.FC<ImageToExportProps> = ({ titulo, fecha, parrafos }
     >
       <div className='font-semibold'>{titulo}</div>
       <div className='italic text-xs'>{fecha}</div>
-      <div className='text-sm mt-4 leading-relaxed'>{parrafos}</div>
+      <div className='text-sm mt-4 leading-relaxed space-y-2'>{parrafos}</div>
     </div>
   );
 };

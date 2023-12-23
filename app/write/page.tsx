@@ -95,8 +95,7 @@ const Writing = () => {
         authorId: currentUser.uid,
       };
       addWrite(newWrite)
-        .then((data) => {
-          console.log('data', data);
+        .then(() => {
           toast({
             title: '¡El escrito se guardó correctamente!',
           });

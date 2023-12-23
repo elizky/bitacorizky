@@ -9,16 +9,15 @@ import { useAuth } from '@/lib/context/AuthContext';
 import { WriteProps } from '@/lib/utils/interfaces';
 import formatDate from '@/lib/utils/formatDate';
 import { getLocationWrite } from '@/lib/services';
-import { exportImage } from '@/lib/utils/exportImage';
 
 import { ImageZoom } from '@/components/ImageZoom';
-import Loader from '@/components/ui/Loader';
 import ImageToExportModal from '@/components/ImageToExportModal';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useToast } from '@/components/ui/use-toast';
-import { ArrowUpRightSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ImageToExport from '@/components/ImageToExport';
+import Loader from '@/components/ui/Loader';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useToast } from '@/components/ui/use-toast';
+import { Share2 } from 'lucide-react';
 
 interface WritePageProps {
   params: {
@@ -31,7 +30,6 @@ const Write = ({ params }: WritePageProps) => {
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isPreviewModalOpen, setPreviewModalOpen] = useState(false);
-  const [previewImageSrc, setPreviewImageSrc] = useState<string | null>(null);
 
   const router = useRouter();
   const { currentUser } = useAuth();
@@ -66,9 +64,7 @@ const Write = ({ params }: WritePageProps) => {
       });
   };
 
-  const handleGenerarImagen = async () => {
-    const imageUrl = await exportImage('entrada-diario', 'mi_diario.png');
-    setPreviewImageSrc(imageUrl);
+  const handleOpenModal = async () => {
     setPreviewModalOpen(true);
   };
 
@@ -86,16 +82,25 @@ const Write = ({ params }: WritePageProps) => {
       ) : (
         <>
           <div className='flex flex-col md:flex-row gap-2 justify-between items-baseline flex-wrap'>
-            <div className='flex items-center gap-8'>
+            <div className='flex items-baseline gap-8'>
               <h1 id='title'>{titleParsed}</h1>
-              <Button
-                onClick={handleGenerarImagen}
-                variant='ghost'
-                size='icon'
-                className='text-muted-foreground'
-              >
-                <ArrowUpRightSquare />
-              </Button>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={handleOpenModal}
+                      variant='ghost'
+                      size='icon'
+                      className='text-muted-foreground w-4 h-4' 
+                    >
+                      <Share2 />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Compartir</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             <p className='font-cormorant italic ' id='date'>
               {dateAndPlace}
@@ -130,10 +135,10 @@ const Write = ({ params }: WritePageProps) => {
       <ImageToExportModal
         isOpen={isPreviewModalOpen}
         onClose={setPreviewModalOpen}
-        imageSrc={previewImageSrc || ''}
+        titulo={titleParsed}
+        fecha={dateAndPlace}
+        parrafos={parr}
       />
-
-      <ImageToExport titulo={titleParsed} fecha={dateAndPlace} parrafos={parr} />
     </div>
   );
 };

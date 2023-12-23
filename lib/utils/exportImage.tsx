@@ -1,6 +1,6 @@
 import html2canvas from 'html2canvas';
 
-export const exportImage = async (elementId: string, fileName: string): Promise<string> => {
+export const exportImage = async (elementId: string): Promise<string> => {
   const elemento = document.getElementById(elementId);
 
   if (!elemento) {

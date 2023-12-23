@@ -7,17 +7,30 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from './ui/button';
+import ImageToExport from './ImageToExport';
+import { exportImage } from '@/lib/utils/exportImage';
 
 interface ImageToExportModalProps {
   isOpen: boolean;
   onClose: Dispatch<SetStateAction<boolean>>;
-  imageSrc: string;
+  titulo: string | JSX.Element | JSX.Element[];
+  fecha: string;
+  parrafos: string | JSX.Element | JSX.Element[];
 }
 
-const ImageToExportModal = ({ isOpen, onClose, imageSrc }: ImageToExportModalProps) => {
+const ImageToExportModal = ({
+  isOpen,
+  onClose,
+  titulo,
+  fecha,
+  parrafos,
+}: ImageToExportModalProps) => {
+
+
   const handleDescargarImagen = async () => {
+    const imageUrl = await exportImage('entrada-diario');
     const enlaceDescarga = document.createElement('a');
-    enlaceDescarga.href = imageSrc;
+    enlaceDescarga.href = imageUrl;
     enlaceDescarga.download = 'mi_diario.png';
     document.body.appendChild(enlaceDescarga);
     enlaceDescarga.click();
@@ -34,14 +47,7 @@ const ImageToExportModal = ({ isOpen, onClose, imageSrc }: ImageToExportModalPro
         </DialogHeader>
 
         <div className='justify-self-center'>
-          {imageSrc && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={imageSrc}
-              alt='shared image preview'
-              className='max-w-full h-auto rounded-md shadow-md'
-            />
-          )}
+          <ImageToExport titulo={titulo} fecha={fecha} parrafos={parrafos} />
         </div>
         <DialogFooter className='sm:justify-between w-full'>
           <Button onClick={handleDescargarImagen}>Descargar</Button>
