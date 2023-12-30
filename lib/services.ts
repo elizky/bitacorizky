@@ -6,6 +6,6 @@ export async function getLocationWrite(lat: number, lng: number) {
     throw new Error('Failed to fetch team players data');
   }
   const data = await res.json();
-  const location = `${data.address.city}, ${data.address.country}`;
+  const location = `${data.address.city || data.address.town}, ${data.address.country}`;
   return location;
 }

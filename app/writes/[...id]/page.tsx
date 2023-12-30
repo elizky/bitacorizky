@@ -4,16 +4,20 @@ import { useEffect, useState } from 'react';
 import { getWrite } from '@/lib/firebase/utils';
 import parser from 'html-react-parser';
 import useContent from '@/lib/hooks/useContent';
-import Image from 'next/image';
 
 import { useAuth } from '@/lib/context/AuthContext';
 import { WriteProps } from '@/lib/utils/interfaces';
 import formatDate from '@/lib/utils/formatDate';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useToast } from '@/components/ui/use-toast';
 import { getLocationWrite } from '@/lib/services';
-import Loader from '@/components/ui/Loader';
+
 import { ImageZoom } from '@/components/ImageZoom';
+import ImageToExportModal from '@/components/ImageToExportModal';
+import { Button } from '@/components/ui/button';
+import Loader from '@/components/ui/Loader';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useToast } from '@/components/ui/use-toast';
+import { Share2 } from 'lucide-react';
 
 interface WritePageProps {
   params: {
@@ -25,10 +29,19 @@ const Write = ({ params }: WritePageProps) => {
   const [location, setLocation] = useState('');
   const [isImageLoading, setIsImageLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isPreviewModalOpen, setPreviewModalOpen] = useState(false);
+
   const router = useRouter();
   const { currentUser } = useAuth();
   const { title, paragraphs } = useContent(write?.content);
   const { toast } = useToast();
+
+  // Textos
+  const titleParsed = parser(title);
+  const dateAndPlace = `${write && location && formatDate(write.publishAt)}  ${
+    location && ` - Cerca de ${location}`
+  }`;
+  const parr = paragraphs.map((paragraph, index) => <p key={index}>{parser(paragraph)}</p>);
 
   const fetchWrite = () => {
     setLoading(true);
@@ -51,6 +64,10 @@ const Write = ({ params }: WritePageProps) => {
       });
   };
 
+  const handleOpenModal = async () => {
+    setPreviewModalOpen(true);
+  };
+
   useEffect(() => {
     !currentUser && router.push('/login');
     currentUser && fetchWrite();
@@ -59,22 +76,40 @@ const Write = ({ params }: WritePageProps) => {
   }, []);
 
   return (
-    <div className='flex flex-col p-8 gap-12 flex-wrap'>
+    <div className='flex flex-col p-8 gap-12 flex-wrap mi-elemento'>
       {loading ? (
         <Loader />
       ) : (
         <>
           <div className='flex flex-col md:flex-row gap-2 justify-between items-baseline flex-wrap'>
-            <h1 className=''>{parser(title)}</h1>
-            <p className='font-cormorant italic '>
-              {write && location && formatDate(write.publishAt)}
-              {location && ` - Cerca de ${location}`}
+            <div className='flex items-baseline gap-8'>
+              <h1 id='title'>{titleParsed}</h1>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={handleOpenModal}
+                      variant='ghost'
+                      size='icon'
+                      className='text-muted-foreground w-4 h-4' 
+                    >
+                      <Share2 />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Compartir</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <p className='font-cormorant italic ' id='date'>
+              {dateAndPlace}
             </p>
           </div>
-          <div className='flex flex-col flex-wrap gap-8 items-start'>
-            {paragraphs.map((paragraph, index) => (
-              <p key={index}>{parser(paragraph)}</p>
-            ))}
+          <div className='flex flex-col flex-wrap gap-8 items-start' id='parr'>
+            {parr}
+          </div>
+          <div>
             {write && write.image !== '' && (
               <div className={` m-auto items-center flex justify-center cursor-zoom-in `}>
                 {write && isImageLoading ? (
@@ -86,7 +121,7 @@ const Write = ({ params }: WritePageProps) => {
                     options={{
                       margin: 10,
                       background: '#000000e3',
-                      scrollOffset: 20
+                      scrollOffset: 20,
                     }}
                     width={300}
                     height={300}
@@ -97,6 +132,13 @@ const Write = ({ params }: WritePageProps) => {
           </div>
         </>
       )}
+      <ImageToExportModal
+        isOpen={isPreviewModalOpen}
+        onClose={setPreviewModalOpen}
+        titulo={titleParsed}
+        fecha={dateAndPlace}
+        parrafos={parr}
+      />
     </div>
   );
 };

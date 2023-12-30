@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/context/AuthContext';
 import Greeting from '@/lib/utils/Greeting';
 
-import InfoModal from './InfoModal';
+import LogModal from './LogModal';
 import { Home, LogOut, MessagesSquare, MoonIcon, Settings, SunIcon } from 'lucide-react';
 import {
   DropdownMenu,
@@ -54,7 +54,18 @@ const NavBar = () => {
       </div>
 
       <div className='hidden sm:flex gap-4 w-1/3  justify-center'>
-        <Badge variant='secondary'>v 0.1.0</Badge>
+        <button
+          onClick={() => setIsModalOpen(!isModalOpen)}
+          className='
+          rounded-lg 
+          focus-visible:outline 
+          focus-visible:outline-2 
+          focus-visible:outline-offset-4 
+          focus-visible:outline-primary
+          '
+        >
+          <Badge variant='secondary'>v 1.0.0</Badge>
+        </button>
       </div>
       <div className='flex justify-end w-1/3'>
         {currentUser && (
@@ -101,7 +112,7 @@ const NavBar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-        <InfoModal isOpen={isModalOpen} onClose={setIsModalOpen} />
+        <LogModal isOpen={isModalOpen} onClose={setIsModalOpen} />
       </div>
     </header>
   );
