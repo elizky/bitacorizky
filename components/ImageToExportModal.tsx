@@ -31,7 +31,7 @@ const ImageToExportModal = ({
     const imageUrl = await exportImage('entrada-diario');
     const enlaceDescarga = document.createElement('a');
     enlaceDescarga.href = imageUrl;
-    enlaceDescarga.download = 'mi_diario.png';
+    enlaceDescarga.download = 'bitacorizky.png';
     document.body.appendChild(enlaceDescarga);
     enlaceDescarga.click();
     document.body.removeChild(enlaceDescarga);
@@ -49,9 +49,8 @@ const ImageToExportModal = ({
         <div className='justify-self-center'>
           <ImageToExport titulo={titulo} fecha={fecha} parrafos={parrafos} />
         </div>
-        <DialogFooter className='sm:justify-between w-full'>
+        <DialogFooter className='w-full'>
           <Button onClick={handleDescargarImagen}>Descargar</Button>
-          <Button onClick={() => alert('Compartir en redes sociales')}>Compartir en Redes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
