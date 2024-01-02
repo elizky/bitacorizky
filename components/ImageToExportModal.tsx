@@ -39,14 +39,14 @@ const ImageToExportModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={() => onClose(false)}>
-      <DialogContent className='max-w-2xl w-2/3 overflow-y-scroll max-h-screen '>
+      <DialogContent className='max-w-2xl w-auto overflow-y-scroll max-h-screen '>
         <DialogHeader>
           <DialogTitle>
             <p className='font-bold'>Compartir Escrito</p>
           </DialogTitle>
         </DialogHeader>
 
-        <div className='justify-self-center'>
+        <div className='flex justify-center items-center'>
           <ImageToExport titulo={titulo} fecha={fecha} parrafos={parrafos} />
         </div>
         <DialogFooter className='w-full'>
