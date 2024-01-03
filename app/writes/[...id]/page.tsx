@@ -18,12 +18,15 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useToast } from '@/components/ui/use-toast';
 import { Share2 } from 'lucide-react';
+import { renderText, renderTextForModal } from '@/lib/utils/renderTexts';
 
 interface WritePageProps {
   params: {
     id: string[];
   };
 }
+// ... (importaciones y código anterior)
+
 const Write = ({ params }: WritePageProps) => {
   const [write, setWrite] = useState<WriteProps>();
   const [location, setLocation] = useState('');
@@ -41,7 +44,11 @@ const Write = ({ params }: WritePageProps) => {
   const dateAndPlace = `${write && location && formatDate(write.publishAt)}  ${
     location && ` - Cerca de ${location}`
   }`;
-  const parr = paragraphs.map((paragraph, index) => <p key={index}>{parser(paragraph)}</p>);
+
+  const textElements = paragraphs.map((textElement, index) => renderText(textElement, index));
+  const textElementsForModal = paragraphs.map((textElement, index) =>
+    renderTextForModal(textElement, index)
+  );
 
   const fetchWrite = () => {
     setLoading(true);
@@ -91,7 +98,7 @@ const Write = ({ params }: WritePageProps) => {
                       onClick={handleOpenModal}
                       variant='ghost'
                       size='icon'
-                      className='text-muted-foreground w-4 h-4' 
+                      className='text-muted-foreground w-4 h-4'
                     >
                       <Share2 />
                     </Button>
@@ -107,7 +114,7 @@ const Write = ({ params }: WritePageProps) => {
             </p>
           </div>
           <div className='flex flex-col flex-wrap gap-8 items-start' id='parr'>
-            {parr}
+            {textElements}
           </div>
           <div>
             {write && write.image !== '' && (
@@ -137,7 +144,7 @@ const Write = ({ params }: WritePageProps) => {
         onClose={setPreviewModalOpen}
         titulo={titleParsed}
         fecha={dateAndPlace}
-        parrafos={parr}
+        parrafos={textElementsForModal}
       />
     </div>
   );

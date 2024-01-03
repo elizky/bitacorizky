@@ -4,6 +4,8 @@ import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Document from '@tiptap/extension-document';
 import Placeholder from '@tiptap/extension-placeholder';
+import OrderedList from '@tiptap/extension-ordered-list';
+import ListItem from '@tiptap/extension-list-item';
 import { Button } from './ui/button';
 
 const CustomDocument = Document.extend({
@@ -27,6 +29,15 @@ const Tiptap = ({ setContent, heading, paragraph }: any) => {
           return paragraph;
         },
       }),
+      OrderedList.configure({
+        HTMLAttributes: {
+          class: 'my-custom-class',
+        },
+        keepMarks: true,
+        keepAttributes: true,
+        itemTypeName: 'listItem',
+      }),
+      ListItem,
     ],
     content: `<h1></h1>
     <p></p>

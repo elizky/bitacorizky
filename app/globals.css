@@ -141,6 +141,10 @@
   margin-top: 0.75em;
   padding: 1rem 0;
 }
+.ProseMirror ol {
+  list-style: decimal;
+  margin-left: 4rem;
+}
 
 .light .ProseMirror h1.is-empty::before {
   content: attr(data-placeholder);

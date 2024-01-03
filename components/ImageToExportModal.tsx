@@ -15,7 +15,7 @@ interface ImageToExportModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
   titulo: string | JSX.Element | JSX.Element[];
   fecha: string;
-  parrafos: string | JSX.Element | JSX.Element[];
+  parrafos: any;
 }
 
 const ImageToExportModal = ({
@@ -25,8 +25,6 @@ const ImageToExportModal = ({
   fecha,
   parrafos,
 }: ImageToExportModalProps) => {
-
-
   const handleDescargarImagen = async () => {
     const imageUrl = await exportImage('entrada-diario');
     const enlaceDescarga = document.createElement('a');
