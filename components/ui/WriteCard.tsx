@@ -6,6 +6,7 @@ import formatDate from '@/lib/utils/formatDate';
 import { Camera, CameraOff, LocateFixed } from 'lucide-react';
 import { WriteProps } from '@/lib/utils/interfaces';
 import Link from 'next/link';
+import { en } from '@/lib/texts/en';
 
 type WriteCardProps = {
   data: WriteProps;
@@ -27,7 +28,7 @@ const WriteCard = ({ data }: WriteCardProps) => {
       </CardHeader>
       <CardContent>
         <Link href={`/writes/${encodeURIComponent(id)}`} className='hover:underline text-primary'>
-          Leer
+          {en.home.goTo}
         </Link>
       </CardContent>
     </Card>

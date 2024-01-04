@@ -1,14 +1,14 @@
 'use client';
+import { en } from '@/lib/texts/en';
 import { Cursor, useTypewriter } from 'react-simple-typewriter';
 const TypeWriter = () => {
-  const title = 'Con Bitacorizky';
-  const subtitle1 = 'Descubre un espacio seguro para expresar tus pensamientos y emociones.';
-  const subtitle2 = 'Registra tus experiencias diarias desde cualquier lugar del mundo.';
-  const subtitle3 = 'Guarda la ubicación de tus escritos y observa tu viaje a lo largo del tiempo.';
-  const subtitle4 = 'Haz lo simple: escribe lo que sientes';
-
   const [text] = useTypewriter({
-    words: [subtitle1, subtitle2, subtitle3, subtitle4],
+    words: [
+      en.typeWritter.subtitle1,
+      en.typeWritter.subtitle2,
+      en.typeWritter.subtitle3,
+      en.typeWritter.subtitle4,
+    ],
     loop: 0,
     typeSpeed: 20,
     deleteSpeed: 30,
@@ -17,7 +17,7 @@ const TypeWriter = () => {
 
   return (
     <div>
-      <p className='text-xl font-semibold'>{title}</p>
+      <p className='text-xl font-semibold'>{en.typeWritter.title}</p>
       <span className='text-xl text-muted-foreground'>{text}</span>
       <Cursor cursorColor='#EA580C' />
     </div>

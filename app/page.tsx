@@ -13,6 +13,7 @@ import { PencilLine } from 'lucide-react';
 import Loader from '@/components/ui/Loader';
 import WriteCard from '@/components/ui/WriteCard';
 import { buttonVariants } from '@/components/ui/button';
+import { en } from '@/lib/texts/en';
 
 const Home = () => {
   const [writes, setWrites] = useState<WriteProps[]>([]);
@@ -41,10 +42,10 @@ const Home = () => {
   return (
     <div className='flex flex-col p-8 gap-12 '>
       <div className='flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:items-center'>
-        <h1>Mis Escritos</h1>
+        <h1>{en.home.title}</h1>
         <Link href={'/write'} className={buttonVariants({ variant: 'default' })}>
           <div className='flex gap-4 items-center'>
-            <p className='text-base'>Escribir</p>
+            <p className='text-base'>{en.home.button}</p>
             <PencilLine />
           </div>
         </Link>
@@ -55,10 +56,10 @@ const Home = () => {
         </div>
       ) : writes.length === 0 ? (
         <div className='flex flex-col justify-center items-center gap-4'>
-          <h3 className='italic'>No tienes escritos</h3>
+          <h3 className='italic'>{en.home.emptyState.subtitle}</h3>
           <Link href={'/write'} className={buttonVariants({ variant: 'default' })}>
             <div className='flex gap-4 items-center'>
-              <p className='text-base'>Comenza a escribir</p>
+              <p className='text-base'>{en.home.emptyState.linkTo}</p>
             </div>
           </Link>
         </div>

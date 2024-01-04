@@ -14,6 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { RegisterSchema } from '@/lib/utils/validation';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
+import { en } from '@/lib/texts/en';
 
 const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +46,7 @@ const RegisterForm = () => {
         console.log('error', error);
         toast({
           variant: 'destructive',
-          title: 'Error al enviar la sugerencia:',
+          title: en.register.form.toast.server,
         });
       })
       .finally(() => setIsLoading(false));
@@ -63,7 +64,7 @@ const RegisterForm = () => {
                 <FormControl>
                   <Input
                     id='text'
-                    placeholder='Tu Nombre'
+                    placeholder={en.register.form.namePlaceholder}
                     type='text'
                     autoCapitalize='sentences'
                     autoComplete='email'
@@ -84,7 +85,7 @@ const RegisterForm = () => {
                 <FormControl>
                   <Input
                     id='email'
-                    placeholder='name@example.com'
+                    placeholder={en.register.form.emailPlaceholder}
                     type='email'
                     autoCapitalize='none'
                     autoComplete='email'
@@ -105,7 +106,7 @@ const RegisterForm = () => {
                 <FormControl>
                   <Input
                     id='password'
-                    placeholder='Password'
+                    placeholder={en.register.form.passwordPlaceholder}
                     type='password'
                     disabled={isLoading}
                     {...field}
@@ -118,7 +119,7 @@ const RegisterForm = () => {
 
           <Button disabled={isLoading}>
             {isLoading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
-            Crear Cuenta
+            {en.register.form.button}
           </Button>
         </div>
       </form>

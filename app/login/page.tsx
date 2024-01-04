@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import LoginForm from '@/components/LoginForm';
 import TypeWriter from '@/components/TypeWriter';
+import { en } from '@/lib/texts/en';
 import Link from 'next/link';
 
 export default async function Home() {
@@ -16,16 +17,15 @@ export default async function Home() {
 
         <div className='w-full md:w-1/2 lg:w-1/3 p-8'>
           <div className=' flex w-full flex-col justify-center items-center space-y-6 '>
-            <h1 className='text-lg font-semibold text-center'>Inicia sesion para poder acceder</h1>
+            <h1 className='text-lg font-semibold text-center'>{en.login.title}</h1>
             <LoginForm />
             <p>
-              O puedes{' '}
+              {en.login.subtitle.first}
               <Link
                 href='/register'
                 className='underline underline-offset-2 hover:text-primary transition'
               >
-                {' '}
-                crearte una cuenta
+                {en.login.subtitle.second}
               </Link>
             </p>
           </div>

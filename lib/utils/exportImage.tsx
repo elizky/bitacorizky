@@ -1,10 +1,11 @@
 import html2canvas from 'html2canvas';
+import { en } from '../texts/en';
 
 export const exportImage = async (elementId: string): Promise<string> => {
   const elemento = document.getElementById(elementId);
 
   if (!elemento) {
-    console.error(`No se encontró el elemento con el ID ${elementId}`);
+    console.error(`${en.writes.error.image} ${elementId}`);
     return '';
   }
 

@@ -19,6 +19,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useToast } from '@/components/ui/use-toast';
 import { Share2 } from 'lucide-react';
 import { renderText, renderTextForModal } from '@/lib/utils/renderTexts';
+import { en } from '@/lib/texts/en';
 
 interface WritePageProps {
   params: {
@@ -42,7 +43,7 @@ const Write = ({ params }: WritePageProps) => {
   // Textos
   const titleParsed = parser(title);
   const dateAndPlace = `${write && location && formatDate(write.publishAt)}  ${
-    location && ` - Cerca de ${location}`
+    location && ` - ${en.writes.near} ${location}`
   }`;
 
   const textElements = paragraphs.map((textElement, index) => renderText(textElement, index));
@@ -61,7 +62,7 @@ const Write = ({ params }: WritePageProps) => {
       .catch((error) => {
         toast({
           variant: 'destructive',
-          title: 'Error al obtener la ubicación',
+          title: en.writes.error.location,
           description: error.message,
         });
       })
@@ -104,7 +105,7 @@ const Write = ({ params }: WritePageProps) => {
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Compartir</p>
+                    <p>{en.writes.tooltip}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
