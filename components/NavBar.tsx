@@ -16,6 +16,7 @@ import {
 } from './ui/dropdown-menu';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import { en } from '@/lib/texts/en';
 
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,9 +38,9 @@ const NavBar = () => {
           pathname === '/' ? (
             currentUser && (
               <Greeting
-                morning='Buenos días'
-                afternoon='Buenas tardes'
-                nigth='Buenas noches'
+                morning={en.navbar.greeting.morning}
+                afternoon={en.navbar.greeting.afternoon}
+                nigth={en.navbar.greeting.nigth}
                 name={currentUser.displayName}
               />
             )
@@ -49,7 +50,7 @@ const NavBar = () => {
             </Button>
           )
         ) : (
-          <h3>Bitacorizky</h3>
+          <h3>{en.metadata.title}</h3>
         )}
       </div>
 
@@ -82,14 +83,14 @@ const NavBar = () => {
                     className='my-1 flex gap-4 items-center w-full'
                     onClick={() => setTheme('dark')}
                   >
-                    <SunIcon /> Claro
+                    <SunIcon /> {en.navbar.dropdown.theme.light}
                   </button>
                 ) : (
                   <button
                     className='my-1 flex gap-4 items-center  w-full'
                     onClick={() => setTheme('light')}
                   >
-                    <MoonIcon /> Oscuro
+                    <MoonIcon /> {en.navbar.dropdown.theme.dark}
                   </button>
                 )}
               </DropdownMenuItem>
@@ -99,7 +100,7 @@ const NavBar = () => {
                 className='my-1 flex gap-4 items-center cursor-pointer'
               >
                 <MessagesSquare />
-                Feedback
+                {en.navbar.dropdown.feedback}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
 
@@ -107,7 +108,7 @@ const NavBar = () => {
                 onClick={handleLogout}
                 className='my-1 flex gap-4 items-center cursor-pointer'
               >
-                <LogOut /> Log out
+                <LogOut /> {en.navbar.dropdown.logout}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

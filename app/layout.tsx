@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/lib/providers/theme-provider';
 import Navbar from '@/components/NavBar';
 import AuthProvider from '@/lib/context/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
+import { en } from '@/lib/texts/en';
 
 const catamaran = Catamaran({
   weight: ['300', '400', '600', '700'],
@@ -19,22 +20,20 @@ const cormorant = Cormorant_Infant({
   variable: '--font-cormorant',
 });
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.bitacorizky.com/'),
+  metadataBase: new URL(en.metadata.url),
   title: {
-    default: 'Bitacorikzy',
-    template: '%s | Bitacorikzy',
+    template: en.metadata.template,
+    default: en.metadata.title,
   },
-  description:
-    'Sitio web para escribir y guardar tus pensamientos, ideas y reflexiones personales. Regístrate y comienza a plasmar tus pensamientos en Bitacorizky.',
-  applicationName: 'Bitacorikzy',
-  authors: [{ name: 'Izky', url: 'https://izky.dev/' }],
-  keywords: ['Bitacora', 'fast writting', 'personal diary'],
+  description: en.metadata.description,
+  applicationName: en.metadata.title,
+  authors: [{ name: en.metadata.author.name, url: en.metadata.author.url }],
+  keywords: en.metadata.keywords,
   openGraph: {
-    title: 'Bitacorikzy',
-    description:
-      'Sitio web para escribir y guardar tus pensamientos, ideas y reflexiones personales',
-    url: 'https://www.bitacorizky.com/',
-    siteName: 'Bitacorikzy',
+    title: en.metadata.title,
+    description: en.metadata.descriptionShort,
+    url: en.metadata.url,
+    siteName: en.metadata.title,
     locale: 'en_US',
     type: 'website',
     images: [

@@ -5,6 +5,7 @@ import { addSuggestion } from '@/lib/firebase/utils';
 import { useAuth } from '@/lib/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { en } from '@/lib/texts/en';
 
 const FeedbackPage = () => {
   const [suggestion, setSuggestion] = useState('');
@@ -18,13 +19,13 @@ const FeedbackPage = () => {
       await addSuggestion(suggestionData);
       setSuggestion('');
       toast({
-        title: '¡Sugerencia enviada exitosamente!',
+        title: en.feedback.toast.success,
       });
     } catch (error) {
       console.log('error', error);
       toast({
         variant: 'destructive',
-        title: 'Error al enviar la sugerencia:',
+        title: en.feedback.toast.error,
       });
     }
   };
@@ -32,7 +33,7 @@ const FeedbackPage = () => {
   return (
     <div className='flex flex-col p-8 gap-4'>
       <div className='flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:items-baseline'>
-        <h1>¡Danos tu opinión!</h1>
+        <h1>{en.feedback.title}</h1>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -44,10 +45,10 @@ const FeedbackPage = () => {
             focus-visible:outline-2 
             focus-visible:outline-offset-4 
             focus-visible:outline-primary bg-secondary-light/40 dark:bg-paper/60'
-          placeholder={'Escribe tu sugerencia aquí' || ''}
+          placeholder={en.feedback.placeholder}
           required
         />
-        <Button className='px-8 text-base'>Enviar</Button>
+        <Button className='px-8 text-base'>{en.feedback.button}</Button>
       </form>
     </div>
   );

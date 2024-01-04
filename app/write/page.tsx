@@ -13,6 +13,7 @@ import { useToast } from '@/components/ui/use-toast';
 import Tiptap from '@/components/Tiptap';
 import { Camera, Loader2, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { en } from '@/lib/texts/en';
 
 const Writing = () => {
   const [content, setContent] = useState<Content>({ type: 'doc', content: [] });
@@ -24,12 +25,6 @@ const Writing = () => {
   const { currentUser } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
-
-  const errorText: ErrorWriteText = {
-    contentError: 'El contenido es requerido',
-    titleError: 'El título es requerido',
-    paragraphError: 'El párrafo es requerido',
-  };
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -43,7 +38,7 @@ const Writing = () => {
         (error) => {
           toast({
             variant: 'destructive',
-            title: 'Error al obtener la ubicación',
+            title: en.write.toast.error,
             description: error.message,
           });
         }
@@ -51,8 +46,8 @@ const Writing = () => {
     } else {
       toast({
         variant: 'destructive',
-        title: 'Error al obtener la ubicación',
-        description: 'Geolocalización no soportada en este dispositivo',
+        title: en.write.toast.error,
+        description: en.write.toast.description,
       });
     }
   };
@@ -65,14 +60,14 @@ const Writing = () => {
         .then((data) => {
           setImage(data);
           toast({
-            title: '¡La imagen se cargó correctamente!',
+            title: en.write.toast.imageSuccess,
           });
         })
         .catch((error) => {
           console.log('error', error);
           toast({
             variant: 'destructive',
-            title: 'Hubo un error al cargar la imagen',
+            title: en.write.toast.imageServer,
           });
         })
         .finally(() => setIsLoadingImage(false));
@@ -82,7 +77,7 @@ const Writing = () => {
   const handleSubmit = async () => {
     setIsLoadingData(true);
     getLocation();
-    const errors = validateContent(content, errorText);
+    const errors = validateContent(content, en.write.errors);
     const currentDate = new Date();
     const publishAt = currentDate.toISOString();
 
@@ -97,7 +92,7 @@ const Writing = () => {
       addWrite(newWrite)
         .then(() => {
           toast({
-            title: '¡El escrito se guardó correctamente!',
+            title: en.write.toast.writeSuccess,
           });
           router.push(`/`);
         })
@@ -105,7 +100,7 @@ const Writing = () => {
           console.log('error', error);
           toast({
             variant: 'destructive',
-            title: 'Hubo error en la conexion',
+            title: en.write.toast.writeServer,
             description: error,
           });
         })
@@ -114,7 +109,7 @@ const Writing = () => {
       const errorMessages = Object.values(errors).join(' ');
       toast({
         variant: 'destructive',
-        title: 'Hubo error en la validación del contenido',
+        title: en.write.toast.validate,
         description: errorMessages,
       });
     }
@@ -128,7 +123,11 @@ const Writing = () => {
     <div className='flex flex-col p-8 gap-12 '>
       <div className='flex justify-between bg-secondary/40'>
         <div className='flex justify-center w-5/6 lg:w-11/12 lg:justify-start items-center flex-wrap font-catamaran'>
-          <Tiptap setContent={setContent} heading='Titulo' paragraph='Escribe lo que sientes' />
+          <Tiptap
+            setContent={setContent}
+            heading={en.write.tiptap.title}
+            paragraph={en.write.tiptap.paragraph}
+          />
         </div>
         <label className='w-1/12 h-fit pr-8 flex flex-col items-center pt-8 text:black dark:text-white cursor-pointer hover:text-primary dark:hover:text-primary transition'>
           <Camera className={isLoadingImage ? ' text-gray-500 ' : ''} />
@@ -147,7 +146,7 @@ const Writing = () => {
       </div>
       <Button onClick={handleSubmit} className='gap-4 text-base m-auto'>
         {isLoadingData ? <Loader2 className='mr-2 h-4 w-4 animate-spin' /> : <Save />}
-        Guardar
+        {en.write.button}
       </Button>
     </div>
   );

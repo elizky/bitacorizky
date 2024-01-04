@@ -13,6 +13,7 @@ import { Button } from './ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { useToast } from './ui/use-toast';
 import { Input } from './ui/input';
+import { en } from '@/lib/texts/en';
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +35,7 @@ const LoginForm = () => {
       .catch((error) => {
         toast({
           variant: 'destructive',
-          title: 'Uh oh! Algo salió mal.',
+          title: en.login.form.toast.error,
           description: error.message,
         });
       });
@@ -45,7 +46,7 @@ const LoginForm = () => {
       .catch((error) => {
         toast({
           variant: 'destructive',
-          title: 'Uh oh! Algo salió mal.',
+          title: en.login.form.toast.error,
           description: error.message,
         });
       });
@@ -60,7 +61,7 @@ const LoginForm = () => {
         console.log('error', error);
         toast({
           variant: 'destructive',
-          title: 'Error al enviar la sugerencia:',
+          title: en.login.form.toast.server,
         });
       })
       .finally(() => setIsLoading(false));
@@ -80,7 +81,7 @@ const LoginForm = () => {
           onClick={onClickGoogleButton}
         >
           <Chrome className='mr-2 h-4 w-4' />
-          Google
+          {en.login.form.provider.google}
         </Button>
         <Button
           className='hover:bg-primary'
@@ -89,11 +90,11 @@ const LoginForm = () => {
           onClick={onClickFacebookButton}
         >
           <Facebook className='mr-2 h-4 w-4' />
-          Facebook
+          {en.login.form.provider.facebook}
         </Button>
       </div>
       <div className='relative flex justify-center text-xs uppercase'>
-        <span className='bg-background px-2 text-muted-foreground'>Or continue with</span>
+        <span className='bg-background px-2 text-muted-foreground'>{en.login.form.subtitle}</span>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-6'>
@@ -106,7 +107,7 @@ const LoginForm = () => {
                   <FormControl>
                     <Input
                       id='email'
-                      placeholder='name@example.com'
+                      placeholder={en.login.form.emailPlaceholder}
                       type='email'
                       autoCapitalize='none'
                       autoComplete='email'
@@ -127,7 +128,7 @@ const LoginForm = () => {
                   <FormControl>
                     <Input
                       id='password'
-                      placeholder='Password'
+                      placeholder={en.login.form.passwordPlaceholder}
                       type='password'
                       disabled={isLoading}
                       {...field}
@@ -140,7 +141,7 @@ const LoginForm = () => {
 
             <Button disabled={isLoading}>
               {isLoading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
-              Login
+              {en.login.form.button}
             </Button>
           </div>
         </form>

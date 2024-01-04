@@ -9,6 +9,7 @@ import {
 import { Button } from './ui/button';
 import ImageToExport from './ImageToExport';
 import { exportImage } from '@/lib/utils/exportImage';
+import { en } from '@/lib/texts/en';
 
 interface ImageToExportModalProps {
   isOpen: boolean;
@@ -40,7 +41,7 @@ const ImageToExportModal = ({
       <DialogContent className='max-w-2xl w-auto overflow-y-scroll max-h-screen '>
         <DialogHeader>
           <DialogTitle>
-            <p className='font-bold'>Compartir Escrito</p>
+            <p className='font-bold'>{en.writes.downloadImage.title}</p>
           </DialogTitle>
         </DialogHeader>
 
@@ -48,7 +49,7 @@ const ImageToExportModal = ({
           <ImageToExport titulo={titulo} fecha={fecha} parrafos={parrafos} />
         </div>
         <DialogFooter className='w-full'>
-          <Button onClick={handleDescargarImagen}>Descargar</Button>
+          <Button onClick={handleDescargarImagen}>{}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

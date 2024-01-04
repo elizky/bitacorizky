@@ -1,11 +1,11 @@
+import { en } from '@/lib/texts/en';
 import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Bitacorikzy',
-    short_name: 'Bitacorikzy',
-    description:
-      'Sitio web para escribir y guardar tus pensamientos, ideas y reflexiones personales. Regístrate y comienza a plasmar tus pensamientos en Bitacorizky.',
+    name: en.metadata.title,
+    short_name: en.metadata.title,
+    description: en.metadata.description,
     start_url: '/',
     display: 'standalone',
     background_color: '#0d0b0a',
