@@ -1,16 +1,16 @@
 export const en = {
   typeWritter: {
-    title: 'Con Bitacorizky',
-    subtitle1: 'Descubre un espacio seguro para expresar tus pensamientos y emociones.',
-    subtitle2: 'Registra tus experiencias diarias desde cualquier lugar del mundo.',
-    subtitle3: 'Guarda la ubicación de tus escritos y observa tu viaje a lo largo del tiempo.',
-    subtitle4: 'Haz lo simple: escribe lo que sientes',
+    title: 'With Bitacorizky',
+    subtitle1: 'Discover a safe space to express your thoughts and emotions.',
+    subtitle2: 'Record your daily experiences from anywhere in the world.',
+    subtitle3: 'Save the location of your writings and observe your journey over time.',
+    subtitle4: 'Keep it simple: write what you feel',
   },
   login: {
-    title: 'Log in para poder acceder',
+    title: 'Log in to access',
     subtitle: {
-      first: 'O puedes ',
-      second: 'crearte una cuenta',
+      first: 'Or you can ',
+      second: 'create an account',
     },
     form: {
       subtitle: 'Or continue with',
@@ -21,50 +21,51 @@ export const en = {
         facebook: 'Facebook',
       },
       toast: {
-        error: 'Uh oh! Algo salió mal.',
-        server: 'Error al enviar la sugerencia:',
+        error: 'Uh oh! Something went wrong.',
+        server: 'Error sending suggestion:',
       },
       button: 'Login',
     },
   },
   register: {
-    title: ' Crea una cuenta para poder acceder',
+    title: 'Create an account to access',
     subtitle: {
-      first: 'O puedes ',
-      second: 'loguearte con tu cuenta',
+      first: 'Or you can ',
+      second: 'log in with your account',
     },
     form: {
       namePlaceholder: 'Your Name',
       emailPlaceholder: 'name@example.com',
       passwordPlaceholder: 'Password',
       toast: {
-        server: 'Error al enviar la sugerencia:',
+        server: 'Error sending suggestion:',
       },
-      button: 'Crear Cuenta',
+      button: 'Create Account',
     },
   },
   home: {
-    title: 'Mis Escritos',
+    title: 'My Writings',
     button: 'Write',
     emptyState: {
-      subtitle: 'No tienes escritos',
-      linkTo: 'Comenza a escribir',
+      subtitle: 'You have no writings',
+      linkTo: 'Start writing',
     },
+    goTo: 'Reed'
   },
   write: {
     errors: {
-      contentError: 'El contenido es requerido',
-      titleError: 'El título es requerido',
-      paragraphError: 'El párrafo es requerido',
+      contentError: 'Content is required',
+      titleError: 'Title is required',
+      paragraphError: 'Paragraph is required',
     },
     toast: {
-      error: 'Error al obtener la ubicación',
-      description: 'Geolocalización no soportada en este dispositivo',
-      imageSuccess: '¡La imagen se cargó correctamente!',
-      imageServer: 'Hubo un error al cargar la imagen',
-      writeSuccess: '¡El escrito se guardó correctamente!',
-      writeServer: 'Hubo error en la conexion',
-      validate: 'Hubo error en la validación del contenido',
+      error: 'Error getting location',
+      description: 'Geolocation not supported on this device',
+      imageSuccess: 'The image was uploaded successfully!',
+      imageServer: 'There was an error uploading the image',
+      writeSuccess: 'The writing was saved successfully!',
+      writeServer: 'There was an error in the connection',
+      validate: 'There was an error in content validation',
     },
     button: 'Save',
     tiptap: {
@@ -76,19 +77,19 @@ export const en = {
     near: 'Near ',
     tooltip: 'Share',
     error: {
-      location: 'Error al obtener la ubicación',
-      image: 'No se encontró el elemento con el ID',
+      location: 'Error getting location',
+      image: 'Element with ID not found',
     },
     downloadImage: {
-      title: 'Compartir Escrito',
-      button: 'Descargar',
+      title: 'Share Writing',
+      button: 'Download',
     },
   },
   navbar: {
     greeting: {
-      morning: 'Good días',
-      afternoon: 'Good tardes',
-      nigth: 'Good noches',
+      morning: 'Good morning',
+      afternoon: 'Good afternoon',
+      night: 'Good night',
     },
     dropdown: {
       theme: {
@@ -100,12 +101,12 @@ export const en = {
     },
   },
   feedback: {
-    title: 'Danos tu opinión!',
-    placeholder: 'Escribe tu sugerencia aquí',
+    title: 'Give us your feedback!',
+    placeholder: 'Write your suggestion here',
     button: 'Send',
     toast: {
-      success: '¡Sugerencia enviada exitosamente!',
-      error: 'Error al enviar la sugerencia:',
+      success: 'Suggestion sent successfully!',
+      error: 'Error sending suggestion:',
     },
   },
   footer: {
@@ -113,39 +114,38 @@ export const en = {
     name: 'Izky',
   },
   errorPage: {
-    title: 'Ops!',
-    subtitle: 'Algo salio mal,prueba refrescando la pagina',
+    title: 'Oops!',
+    subtitle: 'Something went wrong, try refreshing the page',
   },
   notFoundPage: {
-    title: 'Acá no hay nada',
-    button: 'Volver a Inicio',
+    title: "There's nothing here",
+    button: 'Back to Home',
   },
   metadata: {
     title: 'Bitacorikzy',
     template: '%s | Bitacorikzy',
     description:
-      'Sitio web para escribir y guardar tus pensamientos, ideas y reflexiones personales. Regístrate y comienza a plasmar tus pensamientos en Bitacorizky.',
-    descriptionShort:
-      'Sitio web para escribir y guardar tus pensamientos, ideas y reflexiones personales',
+      'Website to write and save your thoughts, ideas, and personal reflections. Register and start expressing your thoughts on Bitacorizky.',
+    descriptionShort: 'Website to write and save your thoughts, ideas, and personal reflections',
     author: {
       name: 'Izky',
       url: 'https://izky.dev/',
     },
-    keywords: ['Bitacorizky', 'Bitacora', 'fast writting', 'personal diary'],
+    keywords: ['Bitacorizky', 'Journal', 'fast writing', 'personal diary'],
     url: 'https://www.bitacorizky.com/',
   },
   validations: {
     register: {
       name: {
-        min: 'El nombre no puede estar vacío',
-        max: 'Maximo 25 caracteres',
+        min: 'Name cannot be empty',
+        max: 'Maximum 25 characters',
       },
       email: {
-        min: 'El email no puede estar vacío',
-        valid: 'El email debe tener un formato válido',
+        min: 'Email cannot be empty',
+        valid: 'Email must have a valid format',
       },
       password: {
-        min: 'La contraseña debe tener al menos 6 caracteres',
+        min: 'Password must be at least 6 characters',
       },
     },
     firebaseError: {
@@ -155,16 +155,16 @@ export const en = {
   },
   logModal: {
     title: 'Changelog',
-    subtitle: 'Últimos cambios de Bitacorizky y anuncios',
+    subtitle: 'Latest changes to Bitacorizky and announcements',
     changeLog: {
-      title: 'Enero 2024 - First Release',
-      subtitle: 'Salió Bitacorizky con sus primeras features:',
+      title: 'January 2024 - First Release',
+      subtitle: 'Bitacorizky is out 🚀 with its first features:',
       list: [
-        'Loguearte con Google y Facebook o crear tu propio usuario',
-        'Permitir guardar la ubicacion cuando escribis',
-        'Poder subir una imagen cuando escribis',
-        'Poder descargar una imagen del escrito cuando lo terminas',
-        'Cambiar tema claro/oscuro',
+        'Log in with Google and Facebook or create your own user',
+        'Allow saving location when writing',
+        'Upload an image when writing',
+        'Download an image from the writing when finished',
+        'Switch between light/dark themes',
       ],
     },
   },
