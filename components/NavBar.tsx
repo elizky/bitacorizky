@@ -40,7 +40,7 @@ const NavBar = () => {
               <Greeting
                 morning={en.navbar.greeting.morning}
                 afternoon={en.navbar.greeting.afternoon}
-                nigth={en.navbar.greeting.nigth}
+                nigth={en.navbar.greeting.night}
                 name={currentUser.displayName}
               />
             )
