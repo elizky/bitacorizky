@@ -50,7 +50,7 @@ export const en = {
       subtitle: 'You have no writings',
       linkTo: 'Start writing',
     },
-    goTo: 'Reed'
+    goTo: 'Read'
   },
   write: {
     errors: {
