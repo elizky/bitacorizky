@@ -26,7 +26,6 @@ interface WritePageProps {
     id: string[];
   };
 }
-// ... (importaciones y código anterior)
 
 const Write = ({ params }: WritePageProps) => {
   const [write, setWrite] = useState<WriteProps>();
